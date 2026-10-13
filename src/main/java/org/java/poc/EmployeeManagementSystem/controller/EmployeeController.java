@@ -50,7 +50,7 @@ public class EmployeeController {
 
     @DeleteMapping("/delete/{employeeID}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable (value = "employeeID") Long employeeID) {
-        employeeService.deleteEmployee(employeeID);
+        employeeService.deleteEmployee(employeeID
         return ResponseEntity.noContent().build();
     }
 
