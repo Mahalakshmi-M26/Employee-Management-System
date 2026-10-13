@@ -45,6 +45,6 @@ public class EmployeeController {
     public ResponseEntity<Void> deleteEmployee(@PathVariable (value = "employeeID") Long employeeID) {
         employeeService.deleteEmployee(employeeID);
         return ResponseEntity.noContent().build();
-
+    }
 
 }
