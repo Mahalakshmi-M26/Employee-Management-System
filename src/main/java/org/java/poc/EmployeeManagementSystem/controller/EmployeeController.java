@@ -39,10 +39,14 @@ public class EmployeeController {
 
     @GetMapping("/{employeeID}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeID){
-        return ResponseEntity.ok().body(employeeService.getEmployeeById(employeeID));
+        Employee e = employeeService.getEmployeeById(employeeID);
+        if (e == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(e);
     }
 
-    @PutMapping("/update/{employeeID}")
+    @PutMapping("/{employeeID}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable (value = "employeeID") Long employeeID, @RequestBody @Valid Employee employee)
     {
         return ResponseEntity.ok().body(employeeService.updateEmployee(employeeID, employee));
