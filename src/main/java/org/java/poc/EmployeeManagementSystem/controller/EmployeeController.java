@@ -5,8 +5,14 @@ import org.java.poc.EmployeeManagementSystem.entity.Employee;
 import org.java.poc.EmployeeManagementSystem.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @RestController
@@ -22,7 +28,8 @@ public class EmployeeController {
     @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee){
         Employee savedEmployee = employeeService.createEmployee(employee);
-        return new ResponseEntity<Employee>(savedEmployee,HttpStatus.CREATED);
+//        return new ResponseEntity<Employee>(savedEmployee,HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
     }
 
     @GetMapping("/getAll")
