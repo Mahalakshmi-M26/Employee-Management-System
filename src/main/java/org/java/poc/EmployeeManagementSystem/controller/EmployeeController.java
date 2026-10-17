@@ -26,7 +26,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/forcreate")
     public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee){
         Employee savedEmployee = employeeService.createEmployee(employee);
         return new ResponseEntity<Employee>(savedEmployee,HttpStatus.CREATED);
