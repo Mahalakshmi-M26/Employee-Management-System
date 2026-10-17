@@ -11,8 +11,8 @@ permissions:
 
 jobs:
   review:
-    # uses: Mahalakshmi-M26/AI_Code_Review_Agent_GitHub_Actions/.github/workflows/ai-code-review-reusable.yml@main
-    uses: Mahalakshmi-M26/New_GitHub_Actions/.github/workflows/ai-code-review-reusable.yml@main
-    secrets:
+     uses: Mahalakshmi-M26/AI_Code_Review_Agent_GitHub_Actions/.github/workflows/ai-code-review-reusable.yml@main
+#    uses: Mahalakshmi-M26/New_GitHub_Actions/.github/workflows/ai-code-review-reusable.yml@main
+     secrets:
       GEP_API_KEY: ${{ secrets.GEP_API_KEY }}
-      # PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
