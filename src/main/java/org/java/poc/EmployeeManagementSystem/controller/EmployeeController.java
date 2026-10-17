@@ -49,7 +49,11 @@ public class EmployeeController {
     @PutMapping("/{employeeID}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable (value = "employeeID") Long employeeID, @RequestBody @Valid Employee employee)
     {
-        return ResponseEntity.ok().body(employeeService.updateEmployee(employeeID, employee));
+        Employee updated = employeeService.updateEmployee(employeeID, employee);
+        if (updated == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/delete/{employeeID}")
