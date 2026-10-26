@@ -22,7 +22,7 @@ public class EmployeeController {
     @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee){
         Employee savedEmployee = employeeService.createEmployee(employee);
-        return new ResponseEntity<Employee>(savedEmployee,HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
     }
 
     @GetMapping("/getAll")
@@ -44,7 +44,7 @@ public class EmployeeController {
     @DeleteMapping("/delete/{employeeID}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable (value = "employeeID") Long employeeID) {
         employeeService.deleteEmployee(employeeID);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build()
     }
 
 }
