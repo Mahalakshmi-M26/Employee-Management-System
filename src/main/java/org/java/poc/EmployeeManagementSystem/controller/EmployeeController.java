@@ -3,6 +3,8 @@ package org.java.poc.EmployeeManagementSystem.controller;
 import jakarta.validation.Valid;
 import org.java.poc.EmployeeManagementSystem.entity.Employee;
 import org.java.poc.EmployeeManagementSystem.service.EmployeeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +26,12 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+
     @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee){
         Employee savedEmployee = employeeService.createEmployee(employee);
+        log.info("Employee created: {}", savedEmployee);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
     }
 
@@ -35,9 +40,9 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employeeService.getAllEmployees());
     }
 
-    @GetMapping("/{employeeID}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeID){
-        return ResponseEntity.ok().body(employeeService.getEmployeeById(employeeID));
+    @GetMapping("/{employeeId}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId){
+        return ResponseEntity.ok().body(employeeService.getEmployeeById(employeeId));
     }
 
     @PutMapping("/update/{employeeID}")
